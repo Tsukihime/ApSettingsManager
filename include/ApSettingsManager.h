@@ -13,7 +13,6 @@
 #include <Preferences.h>
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
-#include <LittleFS.h>
 
 class ApSettingsManager {
 public:

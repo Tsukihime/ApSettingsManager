@@ -1,4 +1,5 @@
 #include "ApSettingsManager.h"
+#include "index_html_gz.h"
 
 ApSettingsManager::ApSettingsManager(): server(80) {}
 
@@ -24,18 +25,12 @@ void ApSettingsManager::begin(const String& ap_ssid, const String& ap_password, 
         startAccessPoint();
     }
 
-    if (!LittleFS.begin()) {
-        Serial.println("LittleFS Mount Error");
-        return;
-    }
-
     server.on("/", HTTP_GET, handleRoot);
     server.onNotFound(handleNotFound);
     server.on("/scan", HTTP_GET, handleScan);
     server.on("/parameters", HTTP_GET, [this](AsyncWebServerRequest *request) { this->handleParameters(request); });
     server.on("/settings", HTTP_GET, [this](AsyncWebServerRequest *request) { this->handleSettings(request); });
     server.on("/save", HTTP_POST, [this](AsyncWebServerRequest *request) { this->handleSave(request); });
-    server.serveStatic("/", LittleFS, "/");
     server.begin();
 }
 
@@ -85,9 +80,9 @@ void ApSettingsManager::handle() {
 }
 
 void ApSettingsManager::handleRoot(AsyncWebServerRequest *request) {
-    AsyncWebServerResponse *response = request->beginResponse(LittleFS, "/index.html.gz", "text/html");
-    response->addHeader("Content-Encoding", "gzip");
-    request->send(response);
+  AsyncWebServerResponse *response = request->beginResponse(200, "text/html", index_html_gz_data, index_html_gz_len, nullptr);
+  response->addHeader("Content-Encoding", "gzip");
+  request->send(response);
 }
 
 void ApSettingsManager::handleNotFound(AsyncWebServerRequest *request) {

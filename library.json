@@ -1,6 +1,6 @@
 {
     "name": "ApSettingsManager",
-    "version": "0.0.91",
+    "version": "0.0.92",
     "description": "A library for managing Wi-Fi settings and access point configuration on ESP8266 and ESP32 devices.",
     "keywords": "wifi, esp8266, esp32, settings, access point, web server",
     "authors": [
@@ -27,10 +27,6 @@
         {
             "name": "Preferences",
             "version": "^2.0.0"
-        },
-        {
-            "name": "LittleFS",
-            "version": "^0.1.0"
         }
     ],
     "scripts": {
