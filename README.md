@@ -120,6 +120,10 @@ String logJson = R"({"Voltage": 220.5, "Current": 1.23, "Power": 270, "CosPhi": 
 apSettings.setLogJson(logJson);
 ```
 
+### Advanced Example: Energy Monitor with MQTT
+
+This [example](https://github.com/Tsukihime/ApSettingsManager/blob/main/examples/Energy_Monitor_with_MQTT/Energy_Monitor_with_MQTT.ino) demonstrates integrating `ApSettingsManager` with an energy monitoring application using MQTT. The full implementation can be found in the [EnergyMonitor](https://github.com/Tsukihime/EnergyMonitor) project.
+
 ## Web Interface
 
 1. If the device fails to connect to a Wi-Fi network, it starts an access point (default SSID: `ESP WiFI AP`).
