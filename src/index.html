@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Настройки Wi-Fi</title>
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADhUlEQVR4nO2Zy0tUURzHP2mmqQVZmD1ALBdli3SdofkXFAWV2qZdZWWLiJZFrXxlUrRr5aNN9FhV28pNaKaBWNFrYW5MNDJTMg78Jn4czty5584oI80XDgz397xnzu91LmSQQQapQh5wFugB3gATwC9ZE/KsR3gMb9qhFVgMuVpIQ7z0eIEXpCE+KwcbgFJgraxSeRajG960QjbwW5z7E+eM5wltUXiNzLKiKIC2X+3u+wC+D4qvOqItb5id6hOjo8ApoEDRNwNDyrFbAbruKL7XQLGiFYjuUaH3pupfuuEIwkngnrzYlHr+EygL0LUTmFX8U+Jon+i07bQn6/wRj8wyDxwNofM4sOCh91BU5zdJAYopMmmyCRhzGDFFqsZDd43ILFprTApdv3o2DmyM8gI3lZIZ+ftj2AscAxqBSqKjEjgh/4rRGUO52IzZ7/BVvN06qya4lhtnrNja6iN8XQl/AXI8ZPfIjo0AP2SNSEBWeOhZA3xVflwNK5gFfFKCzR4GuxIEqKF1emxIs5L9CKwKI1RmGb0L5Idw/plHZnka4iXyxbaWC0rR/5ALDFiCpuiUBMh0Wfz3JdMUyKoFHlg85p+IhxKxqfkHZKNCYR3Q7VCQE+fM62NzMUDvJes4VTh4jI1By7bxZT0RcBKYU4pOO3g6rJ1PhEeKv81Bb1L0OfEhKTRbxczGW0UPU8wOKP5hB10XsXOkAEVK4XcHfVrRC0Mezxj/tIOue6sNKfB/5b/AhQSj4Iiim2yTCHUeR+h8ss7bQexqKdoV3aTKRHis+FsTtBCRg3i9I42+AlY7eCusNGpSZTxcttrvXXHS6EAyaTTXkYcHZfKKh06L/6Fkm0JZddbOJxpWSpIpZFFaiRxpD8K2Ek+WspXIitjM5cg/EdTMzcvOL2kzZ3DNaqdD9yASE22SYWZkDUvA7k6inb7iIcs2a6BxtRBLjSZroNniq0AH5oyMeXoUrJdxsCoJJ6tER701mpbLIBQm4OPCDNLflJJ+GbjfpWCor/Uc6ouIiMMemWVBhvNEaPC8VjlIktDtcmxNyl1/r9W7mLjZEaCr3HGx1SPLdbHlare9kS2OxrtaLLaKzu2QV4umOC7L1WIMQZ1hdYTL3X0Rbf2/1+s+HzgapeznyyqTZ2n7gQOZFcJmluekIVpW+ke+PClC3fLBY1xS5qz8Hkr3z6wZZMAKxF+x3w7NoGR4dgAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlTPQ5AAAAD3RSTlMABw4cKz9abo6ltMfT4/Puy4yHAAABLklEQVR42t2WW7LEIAhEx7dG9Ox/t3dSqZDMnVf4nf6hqg3SIkJuvwlXmow5h7TiLjlUFPWSQ0fRLzkMyMG5kGFccgDcah3w8UO/mQRDQyVdekZDyn0hCFQ9vYT710Vob3IzW5sww0bFuTEv85U5kN+TCj+gFwGQdNBpY0qH4R8FbUJizvFM70yc/0SFCeX2AUVPpgGGO21bZU6p8WDceAwxzgFc1VJyR4iHaw9A2xfdgmJRsgHh2FMACSqPJXmfFlRGEEBOon1TIgJFZRB1w+afLq5sAVh2coG6e+YXieurFUh6byCr7a+S7mGudoL/wNkd7JLsh9a09u9ptV+cvTTsxWcvb/sD0icaLz9RbQLjSxOwtRlrI7O2SmszNrR740AxjyzzUDSP3d/8sfgDDzkfWqCgLBMAAAAASUVORK5CYII=">
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -176,29 +176,20 @@
         const refreshBtn = document.getElementById('refreshBtn');
         let isScanning = false;
 
-        const wifiIcons = {
-          full: `<svg class="wifi-icon" viewBox="0 0 455.838 455.838" fill="currentColor">
-                <path d="m454.97 160.67c-0.175-0.257-0.374-0.498-0.595-0.719-60.489-60.488-140.91-93.801-226.45-93.801-85.537 0-165.95 33.306-226.44 93.788-0.94 0.933-1.48 2.21-1.48 3.552 0 1.326 0.526 2.598 1.465 3.536l33.113 33.114c0.938 0.938 2.209 1.464 3.535 1.464s2.598-0.527 3.535-1.464c49.836-49.839 115.99-77.285 186.27-77.285 70.282 0 136.43 27.447 186.27 77.284 0.938 0.938 2.209 1.464 3.534 1.464 1.326 0 2.599-0.527 3.535-1.464l33.113-33.114c0.938-0.938 1.465-2.209 1.465-3.536 2e-3 -1.005-0.303-1.987-0.869-2.819z"/>
-                <path d="m227.92 153.72c-62.056 0-120.46 24.231-164.46 68.229-1.952 1.953-1.952 5.119 1e-3 7.071l33.01 33.009c0.938 0.938 2.209 1.465 3.535 1.465s2.598-0.527 3.535-1.465c33.277-33.277 77.448-51.605 124.38-51.605 46.931 0 91.102 18.328 124.38 51.605 0.938 0.938 2.21 1.465 3.536 1.465s2.598-0.527 3.535-1.465l33.011-33.009c0.938-0.938 1.465-2.209 1.465-3.536s-0.525-2.598-1.465-3.536c-43.997-43.996-102.4-68.228-164.46-68.228z"/>
-                <path d="m227.92 241.29c-38.701 0-75.126 15.11-102.56 42.549-0.939 0.938-1.465 2.209-1.465 3.537 0 1.326 0.525 2.598 1.465 3.535l33.01 33.01c0.938 0.938 2.209 1.465 3.535 1.465s2.598-0.527 3.535-1.465c16.719-16.719 38.909-25.926 62.484-25.926s45.767 9.209 62.485 25.926c0.938 0.938 2.209 1.465 3.534 1.465s2.598-0.527 3.535-1.465l33.01-33.01c1.952-1.953 1.952-5.119 0-7.07-27.437-27.441-63.862-42.551-102.56-42.551z"/>
-                <path d="m227.92 334.08c-13.521 0-26.229 5.264-35.784 14.822-1.952 1.953-1.952 5.118 1e-3 7.07l32.248 32.25c0.938 0.938 2.209 1.465 3.535 1.465s2.599-0.527 3.535-1.465l32.248-32.25c1.952-1.953 1.952-5.118 0-7.071-9.556-9.557-22.264-14.821-35.783-14.821z"/>
-                </svg>`,
-          three: `<svg class="wifi-icon" viewBox="0 0 455.838 455.838" fill="currentColor">
-                <path d="m227.92 153.72c-62.056 0-120.46 24.231-164.46 68.229-1.952 1.953-1.952 5.119 1e-3 7.071l33.01 33.009c0.938 0.938 2.209 1.465 3.535 1.465s2.598-0.527 3.535-1.465c33.277-33.277 77.448-51.605 124.38-51.605 46.931 0 91.102 18.328 124.38 51.605 0.938 0.938 2.21 1.465 3.536 1.465s2.598-0.527 3.535-1.465l33.011-33.009c0.938-0.938 1.465-2.209 1.465-3.536s-0.525-2.598-1.465-3.536c-43.997-43.996-102.4-68.228-164.46-68.228z"/>
-                <path d="m227.92 241.29c-38.701 0-75.126 15.11-102.56 42.549-0.939 0.938-1.465 2.209-1.465 3.537 0 1.326 0.525 2.598 1.465 3.535l33.01 33.01c0.938 0.938 2.209 1.465 3.535 1.465s2.598-0.527 3.535-1.465c16.719-16.719 38.909-25.926 62.484-25.926s45.767 9.209 62.485 25.926c0.938 0.938 2.209 1.465 3.534 1.465s2.598-0.527 3.535-1.465l33.01-33.01c1.952-1.953 1.952-5.119 0-7.07-27.437-27.441-63.862-42.551-102.56-42.551z"/>
-                <path d="m227.92 334.08c-13.521 0-26.229 5.264-35.784 14.822-1.952 1.953-1.952 5.118 1e-3 7.07l32.248 32.25c0.938 0.938 2.209 1.465 3.535 1.465s2.599-0.527 3.535-1.465l32.248-32.25c1.952-1.953 1.952-5.118 0-7.071-9.556-9.557-22.264-14.821-35.783-14.821z"/>
-                </svg>`,
-          two:  `<svg class="wifi-icon" viewBox="0 0 455.838 455.838" fill="currentColor">
-                <path d="m227.92 241.29c-38.701 0-75.126 15.11-102.56 42.549-0.939 0.938-1.465 2.209-1.465 3.537 0 1.326 0.525 2.598 1.465 3.535l33.01 33.01c0.938 0.938 2.209 1.465 3.535 1.465s2.598-0.527 3.535-1.465c16.719-16.719 38.909-25.926 62.484-25.926s45.767 9.209 62.485 25.926c0.938 0.938 2.209 1.465 3.534 1.465s2.598-0.527 3.535-1.465l33.01-33.01c1.952-1.953 1.952-5.119 0-7.07-27.437-27.441-63.862-42.551-102.56-42.551z"/>
-                <path d="m227.92 334.08c-13.521 0-26.229 5.264-35.784 14.822-1.952 1.953-1.952 5.118 1e-3 7.07l32.248 32.25c0.938 0.938 2.209 1.465 3.535 1.465s2.599-0.527 3.535-1.465l32.248-32.25c1.952-1.953 1.952-5.118 0-7.071-9.556-9.557-22.264-14.821-35.783-14.821z"/>
-                </svg>`,
-          one:  `<svg class="wifi-icon" viewBox="0 0 455.838 455.838" fill="currentColor">
-               <path d="m227.92 334.08c-13.521 0-26.229 5.264-35.784 14.822-1.952 1.953-1.952 5.118 1e-3 7.07l32.248 32.25c0.938 0.938 2.209 1.465 3.535 1.465s2.599-0.527 3.535-1.465l32.248-32.25c1.952-1.953 1.952-5.118 0-7.071-9.556-9.557-22.264-14.821-35.783-14.821z"/>
-                </svg>`,
-          none: `<svg class="wifi-icon" viewBox="0 0 455.838 455.838" fill="currentColor" fill-opacity="0.3">
-               <path d="m227.92 334.08c-13.521 0-26.229 5.264-35.784 14.822-1.952 1.953-1.952 5.118 1e-3 7.07l32.248 32.25c0.938 0.938 2.209 1.465 3.535 1.465s2.599-0.527 3.535-1.465l32.248-32.25c1.952-1.953 1.952-5.118 0-7.071-9.556-9.557-22.264-14.821-35.783-14.821z"/>
-                </svg>`
-        };
+        function createWifiIcon(rssi) {
+          const paths = [
+            [-67, `<path d="M468 205c-7 0-14-3-19-8a286 286 0 0 0-404 0 26 26 0 0 1-37-38 336 336 0 0 1 479 0 26 26 0 0 1-19 46z"/>`],
+            [-70, `<path d="M395 277c-7 0-13-2-18-7-72-72-188-72-259 0a26 26 0 0 1-38-38c92-92 242-92 334 0a26 26 0 0 1-19 45z"/>`],
+            [-80, `<path d="M324 349c-7 0-14-3-19-8a81 81 0 0 0-116 0 26 26 0 0 1-37-37 134 134 0 0 1 190 0 26 26 0 0 1-18 45z"/>`],
+            [-90, `<circle cx="247" cy="399" r="35"/>`]
+          ];
+
+          const svgContent = rssi < -90 
+            ? `<circle cx="247" cy="399" r="35" fill-opacity="0.3"/>` 
+            : paths.filter(path => rssi >= path[0]).map(path => path[1]).join('');
+
+          return `<svg class="wifi-icon" viewBox="0 0 495 495">${svgContent}</svg>`;
+        }
 
         async function loadSettings() {
           try {
@@ -307,19 +298,8 @@
             data.forEach(network => {
               const li = document.createElement('li');
               li.className = 'wifi-item';
-              let icon;
-              if (network.rssi >= -67) {
-                icon = wifiIcons.full;
-              } else if (network.rssi >= -70) {
-                icon = wifiIcons.three;
-              } else if (network.rssi >= -80) {
-                icon = wifiIcons.two;
-              } else if (network.rssi >= -90) {
-                icon = wifiIcons.one;
-              } else {
-                icon = wifiIcons.none;
-              }
-
+              let icon = createWifiIcon(network.rssi);
+             
               li.innerHTML = `${icon} ${network.ssid} (${network.rssi} dBm)`;
               li.addEventListener('click', () => {
                 document.querySelectorAll('.wifi-item').forEach(item => item.classList.remove('selected'));
