@@ -266,6 +266,8 @@
             }
           } catch (error) {
             console.error('Error retrieving parameters:', error);
+          } finally {
+            setTimeout(updateParameters, 2000);
           }
         }
 
@@ -337,7 +339,6 @@
         loadSettings();
         scanNetworks();
         updateParameters();
-        setInterval(updateParameters, 2000);
 
         refreshBtn.addEventListener('click', scanNetworks);
         form.addEventListener('submit', saveSettings);
