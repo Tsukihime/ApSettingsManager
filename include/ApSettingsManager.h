@@ -23,7 +23,8 @@ public:
     void begin(
         const String& ap_ssid = "ESP WiFI AP",
         const String& ap_password = "",
-        unsigned long ap_timeout = 180000
+        unsigned long ap_timeout = 180000,
+        bool noApAtStart = false
     );
 
     bool connectToWiFi();

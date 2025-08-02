@@ -3,7 +3,8 @@
 
 ApSettingsManager::ApSettingsManager(): server(80) {}
 
-void ApSettingsManager::begin(const String& ap_ssid, const String& ap_password, unsigned long ap_timeout) {
+void ApSettingsManager::begin(const String& ap_ssid, const String& ap_password, unsigned long ap_timeout,
+    bool noApAtStart) {
     apSsid = ap_ssid;
     apPassword = ap_password;
     apTimeout = ap_timeout;
@@ -21,7 +22,7 @@ void ApSettingsManager::begin(const String& ap_ssid, const String& ap_password, 
 
     WiFi.hostname(apSsid);
 
-    if (!connectToWiFi()) {
+    if (!connectToWiFi() && !noApAtStart) {
         startAccessPoint();
     }
 
