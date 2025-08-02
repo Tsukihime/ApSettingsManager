@@ -21,9 +21,9 @@ public:
     ApSettingsManager();
 
     void begin(
-        const String& ap_ssid = "ESP WiFI AP",
-        const String& ap_password = "",
-        unsigned long ap_timeout = 180000,
+        const String& apSsid = "ESP WiFI AP",
+        const String& apPassword = "",
+        unsigned long apTimeout = 180000,
         bool noApAtStart = false
     );
 
@@ -31,8 +31,8 @@ public:
     void startAccessPoint();
     void handle();
 
-    void setLogJson(String& values_json);
-    void setCustomParameters(String& params_json);
+    void setLogJson(String& valuesJson);
+    void setCustomParameters(String& paramsJson);
 
     String getWifiSsid();
     void setWifiSsid(const String& ssid);

@@ -3,11 +3,11 @@
 
 ApSettingsManager::ApSettingsManager(): server(80) {}
 
-void ApSettingsManager::begin(const String& ap_ssid, const String& ap_password, unsigned long ap_timeout,
+void ApSettingsManager::begin(const String& apSsid, const String& apPassword, unsigned long apTimeout,
     bool noApAtStart) {
-    apSsid = ap_ssid;
-    apPassword = ap_password;
-    apTimeout = ap_timeout;
+    this->apSsid = apSsid;
+    this->apPassword = apPassword;
+    this->apTimeout = apTimeout;
     customValues = "{}";
 
     preferences.begin("__ap_settings");
@@ -64,7 +64,7 @@ void ApSettingsManager::startAccessPoint() {
 }
 
 void ApSettingsManager::handle() {
-     static unsigned long lastWiFiCheck = 0;
+    static unsigned long lastWiFiCheck = 0;
     if (WiFi.getMode() == WIFI_AP || WiFi.getMode() == WIFI_AP_STA) {
         dnsServer.processNextRequest();
         if (apStartTime > 0 && WiFi.softAPgetStationNum() == 0 && millis() - apStartTime > apTimeout) {
@@ -81,9 +81,9 @@ void ApSettingsManager::handle() {
 }
 
 void ApSettingsManager::handleRoot(AsyncWebServerRequest *request) {
-  AsyncWebServerResponse *response = request->beginResponse(200, "text/html", index_html_gz_data, index_html_gz_len, nullptr);
-  response->addHeader("Content-Encoding", "gzip");
-  request->send(response);
+    AsyncWebServerResponse *response = request->beginResponse(200, "text/html", index_html_gz_data, index_html_gz_len, nullptr);
+    response->addHeader("Content-Encoding", "gzip");
+    request->send(response);
 }
 
 void ApSettingsManager::handleNotFound(AsyncWebServerRequest *request) {
@@ -150,13 +150,13 @@ void ApSettingsManager::handleSave(AsyncWebServerRequest *request) {
     });
 }
 
-void ApSettingsManager::setLogJson(String& values_json) {
-    customValues = values_json;
+void ApSettingsManager::setLogJson(String& valuesJson) {
+    customValues = valuesJson;
 }
 
-void ApSettingsManager::setCustomParameters(String& params_json) {
+void ApSettingsManager::setCustomParameters(String& paramsJson) {
     JsonDocument inputDoc;
-    DeserializationError error = deserializeJson(inputDoc, params_json);
+    DeserializationError error = deserializeJson(inputDoc, paramsJson);
 
     if (error) {
         Serial.print("json deserialization error: ");
