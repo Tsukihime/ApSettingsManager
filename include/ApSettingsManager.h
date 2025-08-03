@@ -24,7 +24,7 @@ public:
         const String& apSsid = "ESP WiFI AP",
         const String& apPassword = "",
         unsigned long apTimeout = 180000,
-        bool noApAtStart = false
+        bool noApOnStart = false
     );
 
     bool connectToWiFi();
