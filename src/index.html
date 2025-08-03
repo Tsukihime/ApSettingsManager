@@ -14,8 +14,7 @@
         font-size: 14px;
       }
 
-      h1,
-      h2 {
+      h1 {
         text-align: center;
         color: #333;
         font-size: 18px;
@@ -31,16 +30,16 @@
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       }
 
-      .form-row {
-        display: flex;
+      .section {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 10px;
         align-items: center;
-        margin-bottom: 8px;
+        margin-top: 10px;
       }
 
       label {
-        flex: 0 0 50px;
         font-size: 13px;
-        margin-right: 10px;
       }
 
       label[for="ssidList"] {
@@ -49,7 +48,6 @@
       }
 
       input {
-        flex: 1;
         padding: 6px;
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -117,6 +115,7 @@
 
       #dynamic-parameters {
         font-family: monospace;
+        margin-top: 10px;
       }
 
       .parameter-row {
@@ -137,7 +136,7 @@
         border: 0;
         height: 2px;
         background: linear-gradient(to right, #fff, #28a745, #fff);
-        margin: 15px 0;
+        margin: 10px 0;
       }
     </style>
   </head>
@@ -145,25 +144,17 @@
     <div class="container">
       <form id="settingsForm">
         <h1>Настройки Wi-Fi</h1>
-        <div class="form-row">
-          <ul id="ssidList"></ul>
-        </div>
-        <div class="form-row">
-          <button type="button" id="refreshBtn">Обновить</button>
-        </div>
-        <div class="form-row">
+        <ul id="ssidList"></ul>
+        <button type="button" id="refreshBtn">Обновить</button>
+        <div class="section">    
           <label for="wifiSsid">SSID:</label>
           <input type="text" id="wifiSsid" name="wifiSsid">
-        </div>
-        <div class="form-row">
           <label for="wifiPassword">Пароль:</label>
           <input type="password" id="wifiPassword" name="wifiPassword">
         </div>
         <div id="dynamic-sections"></div>
         <hr>
-        <div class="form-row">
-          <button type="submit">Сохранить и перезагрузить</button>
-        </div>
+        <button type="submit">Сохранить и перезагрузить</button>
       </form>
       <div id="dynamic-parameters"></div>
     </div>
@@ -214,25 +205,22 @@
               data.sections.forEach(section => {
                 const hr = document.createElement('hr');
                 container.appendChild(hr);
+                const title = document.createElement('h1');
+                title.textContent = section.title;
+                container.appendChild(title);
                 const sectionDiv = document.createElement('div');
                 sectionDiv.className = 'section';
-                const title = document.createElement('h2');
-                title.textContent = section.title;
-                sectionDiv.appendChild(title);
                 section.rows.forEach(row => {
-                  const formRow = document.createElement('div');
-                  formRow.className = 'form-row';
                   const label = document.createElement('label');
                   label.htmlFor = row.name;
                   label.textContent = row.title;
-                  formRow.appendChild(label);
+                  sectionDiv.appendChild(label);
                   const input = document.createElement('input');
                   input.type = row.type;
                   input.id = row.name;
                   input.name = row.name;
                   input.value = row.value;
-                  formRow.appendChild(input);
-                  sectionDiv.appendChild(formRow);
+                  sectionDiv.appendChild(input);
                 });
                 container.appendChild(sectionDiv);
               });
