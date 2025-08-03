@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Настройки Wi-Fi</title>
+    <title>ApSettingsManager</title>
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMFBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlTPQ5AAAAD3RSTlMABw4cKz9abo6ltMfT4/Puy4yHAAABLklEQVR42t2WW7LEIAhEx7dG9Ox/t3dSqZDMnVf4nf6hqg3SIkJuvwlXmow5h7TiLjlUFPWSQ0fRLzkMyMG5kGFccgDcah3w8UO/mQRDQyVdekZDyn0hCFQ9vYT710Vob3IzW5sww0bFuTEv85U5kN+TCj+gFwGQdNBpY0qH4R8FbUJizvFM70yc/0SFCeX2AUVPpgGGO21bZU6p8WDceAwxzgFc1VJyR4iHaw9A2xfdgmJRsgHh2FMACSqPJXmfFlRGEEBOon1TIgJFZRB1w+afLq5sAVh2coG6e+YXieurFUh6byCr7a+S7mGudoL/wNkd7JLsh9a09u9ptV+cvTTsxWcvb/sD0icaLz9RbQLjSxOwtRlrI7O2SmszNrR740AxjyzzUDSP3d/8sfgDDzkfWqCgLBMAAAAASUVORK5CYII=">
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font: 14px Arial, sans-serif;
         background-color: #f0f0f0;
         margin: 0;
         padding: 10px;
-        font-size: 14px;
       }
 
       h1 {
@@ -38,10 +37,6 @@
         margin-top: 10px;
       }
 
-      label {
-        font-size: 13px;
-      }
-
       label[for="ssidList"] {
         margin-bottom: 10px;
         display: block;
@@ -51,8 +46,6 @@
         padding: 6px;
         border: 1px solid #ccc;
         border-radius: 3px;
-        box-sizing: border-box;
-        font-size: 13px;
       }
 
       button {
@@ -81,10 +74,8 @@
         width: 100%;
         list-style: none;
         padding: 0;
-        margin: 10px 0;
         background: #fafafa;
         border-radius: 6px;
-        overflow: hidden;
         border: 1px solid #ccc;
       }
 
@@ -92,8 +83,6 @@
         display: flex;
         align-items: center;
         padding: 10px;
-        border-bottom: 1px solid #e0e0e0;
-        background: white;
         transition: background-color 0.1s ease;
         cursor: pointer;
       }
@@ -141,7 +130,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <main class="container">
       <form id="settingsForm">
         <h1>Настройки Wi-Fi</h1>
         <ul id="ssidList"></ul>
@@ -157,7 +146,7 @@
         <button type="submit">Сохранить и перезагрузить</button>
       </form>
       <div id="dynamic-parameters"></div>
-    </div>
+    </main>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('settingsForm');
@@ -194,7 +183,6 @@
             if (data.header) {
               document.title = data.header;
               const header = document.createElement('h1');
-              header.id = 'header';
               header.textContent = data.header;
               document.querySelector('.container').prepend(header);
             }
