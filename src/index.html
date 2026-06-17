@@ -102,22 +102,22 @@
         margin-right: 8px;
       }
 
-      #dynamic-parameters {
+      #custom-values {
         font-family: monospace;
         margin-top: 10px;
       }
 
-      .parameter-row {
+      .custom-row {
         display: flex;
         margin-bottom: 5px;
       }
 
-      .parameter-key {
+      .custom-key {
         width: 120px;
         font-weight: bold;
       }
 
-      .parameter-value {
+      .custom-value {
         flex: 1;
       }
 
@@ -145,7 +145,7 @@
         <hr>
         <button type="submit">Сохранить и перезагрузить</button>
       </form>
-      <div id="dynamic-parameters"></div>
+      <div id="custom-values"></div>
     </main>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -171,11 +171,11 @@
           return `<svg class="wifi-icon" viewBox="0 0 495 495">${svgContent}</svg>`;
         }
 
-        async function loadSettings() {
+        async function loadParameters() {
           try {
-            const response = await fetch('/settings');
+            const response = await fetch('/parameters');
             if (!response.ok) {
-              throw new Error('Failed to load settings');
+              throw new Error('Failed to load parameters');
             }
             const data = await response.json();
             wifiSsidInput.value = data.wifiSsid;
@@ -214,36 +214,36 @@
               });
             }
           } catch (error) {
-            console.error('Error loading settings:', error);
+            console.error('Error loading parameters:', error);
           }
         }
 
-        async function updateParameters() {
+        async function updateCustomValues() {
           try {
-            const response = await fetch('/parameters');
+            const response = await fetch('/cvalues');
             if (!response.ok) {
-              throw new Error('Failed to retrieve parameters');
+              throw new Error('Failed to retrieve custom values');
             }
             const data = await response.json();
-            const div = document.getElementById('dynamic-parameters');
+            const div = document.getElementById('custom-values');
             div.innerHTML = '';
             for (const [key, value] of Object.entries(data)) {
               const row = document.createElement('div');
-              row.className = 'parameter-row';
+              row.className = 'custom-row';
               const keySpan = document.createElement('span');
-              keySpan.className = 'parameter-key';
+              keySpan.className = 'custom-key';
               keySpan.textContent = `${key}:`;
               const valueSpan = document.createElement('span');
-              valueSpan.className = 'parameter-value';
+              valueSpan.className = 'custom-value';
               valueSpan.textContent = value;
               row.appendChild(keySpan);
               row.appendChild(valueSpan);
               div.appendChild(row);
             }
           } catch (error) {
-            console.error('Error retrieving parameters:', error);
+            console.error('Error retrieving custom values:', error);
           } finally {
-            setTimeout(updateParameters, 2000);
+            setTimeout(updateCustomValues, 2000);
           }
         }
 
@@ -312,9 +312,9 @@
           }
         }
 
-        loadSettings();
+        loadParameters();
         scanNetworks();
-        updateParameters();
+        updateCustomValues();
 
         refreshBtn.addEventListener('click', scanNetworks);
         form.addEventListener('submit', saveSettings);

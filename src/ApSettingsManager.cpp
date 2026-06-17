@@ -26,11 +26,11 @@ void ApSettingsManager::begin(const String& apSsid, const String& apPassword, un
         startAccessPoint();
     }
 
-    server.on("/", HTTP_GET, handleRoot);
     server.onNotFound(handleNotFound);
+    server.on("/settings", HTTP_GET, handleSettingsPage);
     server.on("/scan", HTTP_GET, handleScan);
+    server.on("/cvalues", HTTP_GET, [this](AsyncWebServerRequest *request) { this->handleCustomValues(request); });
     server.on("/parameters", HTTP_GET, [this](AsyncWebServerRequest *request) { this->handleParameters(request); });
-    server.on("/settings", HTTP_GET, [this](AsyncWebServerRequest *request) { this->handleSettings(request); });
     server.on("/save", HTTP_POST, [this](AsyncWebServerRequest *request) { this->handleSave(request); });
     server.begin();
 }
@@ -80,15 +80,25 @@ void ApSettingsManager::handle() {
     }
 }
 
-void ApSettingsManager::handleRoot(AsyncWebServerRequest *request) {
+void ApSettingsManager::handleSettingsPage(AsyncWebServerRequest *request) {
     AsyncWebServerResponse *response = request->beginResponse(200, "text/html", index_html_gz_data, index_html_gz_len, nullptr);
     response->addHeader("Content-Encoding", "gzip");
     request->send(response);
 }
 
 void ApSettingsManager::handleNotFound(AsyncWebServerRequest *request) {
-    Serial.println("Intercepting request: " + request->url() + ", redirecting to the main page");
-    request->redirect("http://" + WiFi.softAPIP().toString() + "/");
+    Serial.print("Intercepting request: " + request->url());
+    
+    AsyncWebServerResponse *response = request->beginResponse(302, "text/plain", "");
+    if (request->url() == "/") {
+        Serial.println(" -> Redirecting to /settings");
+        response->addHeader("Location", "/settings");
+    } else {
+        Serial.println(" -> Redirecting to root");
+        response->addHeader("Location", "/");
+    }
+    response->addHeader("Connection", "close");
+    request->send(response);
 }
 
 void ApSettingsManager::handleScan(AsyncWebServerRequest *request) {
@@ -115,11 +125,11 @@ void ApSettingsManager::handleScan(AsyncWebServerRequest *request) {
     request->send(200, "application/json", json);
 }
 
-void ApSettingsManager::handleParameters(AsyncWebServerRequest *request) {
+void ApSettingsManager::handleCustomValues(AsyncWebServerRequest *request) {
     request->send(200, "application/json", customValues);
 }
 
-void ApSettingsManager::handleSettings(AsyncWebServerRequest *request) {
+void ApSettingsManager::handleParameters(AsyncWebServerRequest *request) {
     String json;
     serializeJson(parameters, json);
     request->send(200, "application/json", json);

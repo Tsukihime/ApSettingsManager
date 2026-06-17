@@ -57,11 +57,11 @@ private:
 
     String customValues;
 
-    static void handleRoot(AsyncWebServerRequest *request);
+    static void handleSettingsPage(AsyncWebServerRequest *request);
     static void handleNotFound(AsyncWebServerRequest *request);
     static void handleScan(AsyncWebServerRequest *request);
+    void handleCustomValues(AsyncWebServerRequest *request);
     void handleParameters(AsyncWebServerRequest *request);
-    void handleSettings(AsyncWebServerRequest *request);
     void handleSave(AsyncWebServerRequest *request);
 };
 
