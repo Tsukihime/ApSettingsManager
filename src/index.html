@@ -180,10 +180,29 @@
           fill: #81c784;
         }
       }
+
+      .container {
+        position: relative;
+      }
+
+      .back-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: auto;
+        padding: 5px 10px;
+        margin-top: 0;
+        background: #6c757d;
+        display: none;
+      }
+      .back-btn:hover {
+        background: #5a6268;
+      }
     </style>
   </head>
   <body>
     <main class="container">
+      <button type="button" id="backBtn" class="back-btn">&larr; Назад</button>
       <form id="settingsForm">
         <h1>Настройки Wi-Fi</h1>
         <ul id="ssidList"></ul>
@@ -365,6 +384,22 @@
           }
         }
 
+        async function checkBackButton() {
+          const backBtn = document.getElementById('backBtn');
+          try {
+            const response = await fetch('/', { method: 'GET', redirect: 'manual' });
+            if (response.status === 200) {
+              backBtn.style.display = 'block';
+              backBtn.addEventListener('click', () => {
+                window.location.href = '/';
+              });
+            }
+          } catch (error) {
+            console.error('Error checking root availability:', error);
+          }
+        }
+
+        checkBackButton();
         loadParameters();
         scanNetworks();
         updateCustomValues();
