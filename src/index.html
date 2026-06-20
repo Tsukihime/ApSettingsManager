@@ -280,6 +280,9 @@
                   input.id = row.name;
                   input.name = row.name;
                   input.value = row.value;
+                  if (row.type === 'number' || row.type === 'range') {
+                    input.step = row.step ? row.step : 'any';
+                  }
                   sectionDiv.appendChild(input);
                 });
                 container.appendChild(sectionDiv);
